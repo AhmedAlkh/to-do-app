@@ -14,12 +14,16 @@ header {
     width: 100%;
   }
 
+  @media (min-width: 48rem) {
+    background-image: url(/src/assets/images/bg-desktop-light.jpg);
+  }
+
   form {
     position: relative;
     width: 100%;
     &::before {
       position: absolute;
-      content: '';
+      content: "";
       height: 24px;
       width: 24px;
       border: 2px solid var(--clr-lightest-gray-100);
@@ -28,7 +32,7 @@ header {
     }
   }
 
-  .search-bar {
+  .create-bar {
     padding: 14px;
     padding-left: 60px;
     // background-color: var(--clr-white);
