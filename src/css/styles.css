@@ -76,13 +76,117 @@ select {
 /* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
   *,
-*::before,
-*::after {
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+:root {
+  --clr-background-light-gray: #fafafa;
+  --clr-white: #ffffff;
+  --clr-dark-grayish-blue-400: #393a4b;
+  --clr-dark-grayish-blue-200: #494c6b;
+  --clr-light-gray-400: #9495a5;
+  --clr-lighter-gray-200: #d1d2da;
+  --clr-lightest-gray-100: #e3e4f1;
+  --clr-light-blue: #3a7cfd;
+  --clr-primary-gradient: linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
+  --clr-background-dark-gray: #171823;
+  --clr-midnight-black: #25273d;
+  --clr-dark-gray-text: #767992;
+  --clr-light-gray-text: #4d5067;
+  --clr-whitish-gray: #c8cbe7;
+  --list-item: var(--clr-dark-grayish-blue);
+  --ff-josefin-sans: "Josefin Sans", sans-serif;
+}
+
+body {
+  font-family: var(--ff-josefin-sans);
+  font-weight: 400;
+  color: var(--clr-dark-grayish-blue-400);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.center {
+  --measure: 540px;
+  box-sizing: content-box;
+  margin-inline: auto;
+  max-inline-size: var(--measure);
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+header {
+  background-image: url(/src/assets/images/bg-mobile-light.jpg);
+  background-size: cover;
+  color: var(--clr-white);
+  padding: 48px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+header .todo-wrapper {
+  display: flex;
+  justify-content: space-between;
+  letter-spacing: 15px;
+  width: 100%;
+}
+header form {
+  position: relative;
+  width: 100%;
+}
+header form::before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  border: 2px solid var(--clr-lightest-gray-100);
+  border-radius: 50%;
+  transform: translate(90%, 50%);
+}
+header .search-bar {
+  padding: 14px;
+  padding-left: 60px;
+  background-color: var(--clr-white);
+  box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
+
+footer .attribution {
+  font-size: 11px;
+  text-align: center;
+}
+footer .attribution a {
+  color: hsl(228deg, 45%, 44%);
 }
 
 /*# sourceMappingURL=styles.css.map */

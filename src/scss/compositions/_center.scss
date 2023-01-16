@@ -1,0 +1,6 @@
+.center {
+  --measure: 540px;
+  box-sizing: content-box;
+  margin-inline: auto;
+  max-inline-size: var(--measure);
+}

@@ -1,0 +1,40 @@
+header {
+  background-image: url(/src/assets/images/bg-mobile-light.jpg);
+  background-size: cover;
+  color: var(--clr-white);
+  padding: 48px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .todo-wrapper {
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 15px;
+    width: 100%;
+  }
+
+  form {
+    position: relative;
+    width: 100%;
+    &::before {
+      position: absolute;
+      content: "";
+      height: 24px;
+      width: 24px;
+      border: 2px solid var(--clr-lightest-gray-100);
+      border-radius: 50%;
+      transform: translate(90%, 50%);
+    }
+  }
+
+  .search-bar {
+    padding: 14px;
+    padding-left: 60px;
+    background-color: var(--clr-white);
+    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+  }
+}
