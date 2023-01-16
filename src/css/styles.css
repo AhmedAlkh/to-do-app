@@ -76,8 +76,8 @@ select {
 /* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
   *,
-  *::before,
-  *::after {
+*::before,
+*::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -99,7 +99,6 @@ select {
   --clr-dark-gray-text: #767992;
   --clr-light-gray-text: #4d5067;
   --clr-whitish-gray: #c8cbe7;
-  --list-item: var(--clr-dark-grayish-blue);
   --ff-josefin-sans: "Josefin Sans", sans-serif;
 }
 
@@ -107,6 +106,7 @@ body {
   font-family: var(--ff-josefin-sans);
   font-weight: 400;
   color: var(--clr-dark-grayish-blue-400);
+  background-color: var(--bg-body);
 }
 
 h1,
@@ -115,6 +115,7 @@ h3,
 h4,
 h5,
 h6 {
+  color: var(--text-header-primary);
   font-weight: 700;
 }
 
@@ -122,6 +123,39 @@ button {
   cursor: pointer;
   background-color: transparent;
   border: none;
+}
+
+li {
+  color: var(--text-list-item);
+}
+
+input {
+  background-color: var(--bg-search-input);
+  color: var(--text-search-input);
+}
+
+input::placeholder {
+  color: var(--text-search-input-placeholder);
+}
+
+body#light {
+  --bg-body: white;
+  --bg-list-item: white;
+  --bg-search-input: white;
+  --text-list-item: var(--clr-dark-grayish-blue);
+  --text-header-primary: deeppink;
+  --text-search-input: gold;
+  --text-search-input-placeholder: aqua;
+}
+
+body#dark {
+  --bg-body: red;
+  --bg-list-item: black;
+  --bg-search-input: orange;
+  --text-header-primary: silver;
+  --text-search-input: brown;
+  --text-list-item: aqua;
+  --text-search-input-placeholder: deeppink;
 }
 
 .center {
@@ -174,7 +208,6 @@ header form::before {
 header .search-bar {
   padding: 14px;
   padding-left: 60px;
-  background-color: var(--clr-white);
   box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
   border-radius: 5px;
   border: none;

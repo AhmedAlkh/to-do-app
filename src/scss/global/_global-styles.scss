@@ -16,17 +16,16 @@
   --clr-dark-gray-text: #767992;
   --clr-light-gray-text: #4d5067;
   --clr-whitish-gray: #c8cbe7;
-  // Light Theme
-  --list-item: var(--clr-dark-grayish-blue);
-  // Dark Theme
+
   // Font Families
-  --ff-josefin-sans: "Josefin Sans", sans-serif;
+  --ff-josefin-sans: 'Josefin Sans', sans-serif;
 }
 
 body {
   font-family: var(--ff-josefin-sans);
   font-weight: 400;
   color: var(--clr-dark-grayish-blue-400);
+  background-color: var(--bg-body);
 }
 
 h1,
@@ -35,6 +34,7 @@ h3,
 h4,
 h5,
 h6 {
+  color: var(--text-header-primary);
   font-weight: 700;
 }
 
@@ -43,3 +43,51 @@ button {
   background-color: transparent;
   border: none;
 }
+
+li {
+  color: var(--text-list-item);
+}
+
+input {
+  background-color: var(--bg-search-input);
+  color: var(--text-search-input);
+}
+
+input::placeholder {
+  color: var(--text-search-input-placeholder);
+}
+
+// THEMING
+
+body#light {
+  // Light Theme (default)
+  --bg-body: white;
+  --bg-list-item: white;
+  --bg-search-input: white;
+  --text-list-item: var(--clr-dark-grayish-blue);
+  --text-header-primary: deeppink;
+  --text-search-input: gold;
+  --text-search-input-placeholder: aqua;
+}
+
+body#dark {
+  --bg-body: red;
+  --bg-list-item: black;
+  --bg-search-input: orange;
+  --text-header-primary: silver;
+  --text-search-input: brown;
+  --text-list-item: aqua;
+  --text-search-input-placeholder: deeppink;
+}
+
+//TODO: DOESN'T WORK, FIX -- It overrides some of the dark-theme colours
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     color-scheme: dark;
+//     --bg-body: red;
+//     --bg-list-item: black;
+//     --text-search-input: white;
+//     --text-search-input-placeholder: deeppink;
+//     --text-list-item: white;
+//   }
+// }
