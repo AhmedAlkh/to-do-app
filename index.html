@@ -20,7 +20,9 @@
     <!-- CSS stylesheet -->
     <link rel="stylesheet" href="/src/css/styles.css" />
     <title>Frontend Mentor | Todo app</title>
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+
+    <!-- JS -->
+    <script src="./src/js/script.js" defer></script>
   </head>
   <body id="light">
     <header class="header">
@@ -34,7 +36,7 @@
           />
         </button>
       </div>
-      <form class="center">
+      <form class="create-bar-form center">
         <label class="sr-only" for="create-bar">Create a task</label>
         <input
           name="create-bar"
@@ -47,61 +49,18 @@
     </header>
     <main>
       <div class="todo-list center">
-        <ul class="list">
-          <li class="list-item">
+        <ul class="list" data-random="fdafsafa">
+          <!-- <li class="list-item">
             <button class="complete-btn">
               <img src="/src/assets/images/icon-check.svg" alt="" />
             </button>
-            <p class="list-item-text">Jog around the park 3x</p>
+            <p class="list-item-text" contenteditable="true">
+              Jog around the park 3x
+            </p>
             <button class="delete-btn">
               <img src="/src/assets/images/icon-cross.svg" alt="" />
             </button>
-          </li>
-          <li class="list-item">
-            <button class="complete-btn">
-              <img src="/src/assets/images/icon-check.svg" alt="" />
-            </button>
-            <p class="list-item-text">Jog around the park 3x</p>
-            <button class="delete-btn">
-              <img src="/src/assets/images/icon-cross.svg" alt="" />
-            </button>
-          </li>
-          <li class="list-item">
-            <button class="complete-btn">
-              <img src="/src/assets/images/icon-check.svg" alt="" />
-            </button>
-            <p class="list-item-text">Jog around the park 3x</p>
-            <button class="delete-btn">
-              <img src="/src/assets/images/icon-cross.svg" alt="" />
-            </button>
-          </li>
-          <li class="list-item">
-            <button class="complete-btn">
-              <img src="/src/assets/images/icon-check.svg" alt="" />
-            </button>
-            <p class="list-item-text">Jog around the park 3x</p>
-            <button class="delete-btn">
-              <img src="/src/assets/images/icon-cross.svg" alt="" />
-            </button>
-          </li>
-          <li class="list-item">
-            <button class="complete-btn">
-              <img src="/src/assets/images/icon-check.svg" alt="" />
-            </button>
-            <p class="list-item-text">Jog around the park 3x</p>
-            <button class="delete-btn">
-              <img src="/src/assets/images/icon-cross.svg" alt="" />
-            </button>
-          </li>
-          <li class="list-item">
-            <button class="complete-btn">
-              <img src="/src/assets/images/icon-check.svg" alt="" />
-            </button>
-            <p class="list-item-text">Jog around the park 3x</p>
-            <button class="delete-btn">
-              <img src="/src/assets/images/icon-cross.svg" alt="" />
-            </button>
-          </li>
+          </li> -->
         </ul>
       </div>
       <div class="status-bar center">
