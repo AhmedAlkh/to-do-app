@@ -16,6 +16,18 @@
     // padding-top: 16px;
   }
 
+  .items-left {
+    color: var(--clr-light-gray-400);
+  }
+
+  .clear-btn {
+    color: var(--clr-light-gray-400);
+  }
+
+  .clear-btn:hover {
+    color: var(--clr-dark-grayish-blue-200);
+  }
+
   .tabs {
     display: flex;
     justify-content: center;
@@ -26,6 +38,7 @@
     // box-shadow: 0px 0px 50px -15px rgba(194, 195, 214, 0.5);
     box-shadow: 0px 0px 40px 4px rgba(194, 195, 214, 0.5);
     border-radius: 5px;
+    font-weight: 700;
   }
 
   .alternate-status-bar {

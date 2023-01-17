@@ -67,30 +67,34 @@ input::placeholder {
   color: var(--text-hover-tabs);
 }
 
+.text-wrapper {
+  color: var(--clr-light-gray-400);
+}
+
 // THEMING
 
 body#light {
   // Light Theme (default)
-  --bg-body: white;
-  --bg-list-item: white;
-  --bg-search-input: white;
+  --bg-body: var(--clr-background-light-gray);
+  --bg-list-item: var(--clr-white);
+  --bg-search-input: var(--clr-white);
   --text-list-item: var(--clr-dark-grayish-blue);
-  --text-header-primary: deeppink;
-  --text-search-input: gold;
-  --text-search-input-placeholder: aqua;
+  --text-header-primary: var(--clr-white);
+  --text-search-input: var(--clr-dark-grayish-blue-400);
+  --text-search-input-placeholder: var(--clr-light-gray-400);
   // Hover
   --text-tabs: var(--clr-light-gray-400);
   --text-hover-tabs: var(--clr-dark-grayish-blue-200);
 }
 
 body#dark {
-  --bg-body: red;
-  --bg-list-item: black;
-  --bg-search-input: orange;
-  --text-header-primary: silver;
-  --text-search-input: brown;
-  --text-list-item: aqua;
-  --text-search-input-placeholder: deeppink;
+  --bg-body: var(--clr-background-dark-gray);
+  --bg-list-item: var(--clr-midnight-black);
+  --bg-search-input: var(--clr-midnight-black);
+  --text-header-primary: var(--clr-white);
+  --text-search-input: var(--clr-whitish-gray);
+  --text-list-item: var(--clr-whitish-gray);
+  --text-search-input-placeholder: var(--clr-dark-gray-text);
   // Hover
   --text-tabs: var(--clr-dolphin-gray);
   --text-hover-tabs: var(---clr-blueish-white);
