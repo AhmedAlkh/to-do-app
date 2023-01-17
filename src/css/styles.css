@@ -196,6 +196,8 @@ header {
 }
 header .todo-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
   justify-content: space-between;
   letter-spacing: 15px;
   width: 100%;
@@ -234,7 +236,7 @@ main {
 
 .todo-list {
   background-color: var(--bg-body);
-  box-shadow: 0px -10px 50px -2px rgba(194, 195, 214, 0.5);
+  box-shadow: 0px -33px 50px -2px rgba(194, 195, 214, 0.5);
   border-radius: 5px;
 }
 .todo-list .list-item {
@@ -251,6 +253,7 @@ main {
   }
 }
 .todo-list .complete-btn {
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -274,7 +277,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
-  row-gap: 16px;
+  row-gap: 24px;
 }
 .status-bar .wrapper {
   grid-column: 1/-1;
@@ -284,7 +287,6 @@ main {
   box-shadow: 0px 20px 50px -15px rgba(194, 195, 214, 0.5);
   border-radius: 5px;
   padding: 20px;
-  padding-top: 16px;
 }
 .status-bar .tabs {
   display: flex;
@@ -293,7 +295,7 @@ main {
   padding-block: 15px;
   gap: 19px;
   width: 100%;
-  box-shadow: 0px 0px 50px -15px rgba(194, 195, 214, 0.5);
+  box-shadow: 0px 0px 40px 4px rgba(194, 195, 214, 0.5);
   border-radius: 5px;
 }
 .status-bar .alternate-status-bar {
@@ -311,6 +313,10 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
+    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+    padding-inline: 24px;
+    padding-top: 16px;
+    padding-bottom: 20px;
   }
   .status-bar .alternate-status-bar .tabs {
     display: flex;
