@@ -76,8 +76,8 @@ select {
 /* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
   *,
-*::before,
-*::after {
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -103,6 +103,8 @@ li {
   --clr-dark-gray-text: #767992;
   --clr-light-gray-text: #4d5067;
   --clr-whitish-gray: #c8cbe7;
+  --clr-dolphin-gray: #5b5e7e;
+  --clr-blueish-white: #e3e4f1;
   --ff-josefin-sans: "Josefin Sans", sans-serif;
 }
 
@@ -142,6 +144,14 @@ input::placeholder {
   color: var(--text-search-input-placeholder);
 }
 
+.tabs button {
+  color: var(--text-tabs);
+}
+
+.tabs button:hover {
+  color: var(--text-hover-tabs);
+}
+
 body#light {
   --bg-body: white;
   --bg-list-item: white;
@@ -150,6 +160,8 @@ body#light {
   --text-header-primary: deeppink;
   --text-search-input: gold;
   --text-search-input-placeholder: aqua;
+  --text-tabs: var(--clr-light-gray-400);
+  --text-hover-tabs: var(--clr-dark-grayish-blue-200);
 }
 
 body#dark {
@@ -160,6 +172,8 @@ body#dark {
   --text-search-input: brown;
   --text-list-item: aqua;
   --text-search-input-placeholder: deeppink;
+  --text-tabs: var(--clr-dolphin-gray);
+  --text-hover-tabs: var(---clr-blueish-white);
 }
 
 .center {
@@ -183,6 +197,10 @@ body#dark {
 
 .bg-primary-gradient {
   background-image: var(--clr-primary-gradient);
+}
+
+.text-active-state {
+  color: var(--clr-light-blue);
 }
 
 header {
@@ -233,6 +251,10 @@ main {
   padding-inline: 20px;
   transform: translateY(-24px);
 }
+main .text-wrapper {
+  text-align: center;
+  margin-block: 45px;
+}
 
 .todo-list {
   background-color: var(--bg-body);
@@ -257,11 +279,13 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid var(--clr-lightest-gray-100);
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: orange;
+}
+.todo-list .complete-btn:hover {
+  border-image: var(--clr-primary-gradient);
 }
 @media (min-width: 48rem) {
   .todo-list .complete-btn {
@@ -306,7 +330,7 @@ main {
     display: block;
   }
   .status-bar .wrapper,
-.status-bar .tabs {
+  .status-bar .tabs {
     display: none;
   }
   .status-bar .alternate-status-bar {

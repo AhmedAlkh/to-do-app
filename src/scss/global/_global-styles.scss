@@ -16,6 +16,8 @@
   --clr-dark-gray-text: #767992;
   --clr-light-gray-text: #4d5067;
   --clr-whitish-gray: #c8cbe7;
+  --clr-dolphin-gray: #5b5e7e;
+  --clr-blueish-white: #e3e4f1;
 
   // Font Families
   --ff-josefin-sans: "Josefin Sans", sans-serif;
@@ -57,6 +59,14 @@ input::placeholder {
   color: var(--text-search-input-placeholder);
 }
 
+.tabs button {
+  color: var(--text-tabs);
+}
+
+.tabs button:hover {
+  color: var(--text-hover-tabs);
+}
+
 // THEMING
 
 body#light {
@@ -68,6 +78,9 @@ body#light {
   --text-header-primary: deeppink;
   --text-search-input: gold;
   --text-search-input-placeholder: aqua;
+  // Hover
+  --text-tabs: var(--clr-light-gray-400);
+  --text-hover-tabs: var(--clr-dark-grayish-blue-200);
 }
 
 body#dark {
@@ -78,6 +91,9 @@ body#dark {
   --text-search-input: brown;
   --text-list-item: aqua;
   --text-search-input-placeholder: deeppink;
+  // Hover
+  --text-tabs: var(--clr-dolphin-gray);
+  --text-hover-tabs: var(---clr-blueish-white);
 }
 
 //TODO: DOESN'T WORK, FIX -- It overrides some of the dark-theme colours
