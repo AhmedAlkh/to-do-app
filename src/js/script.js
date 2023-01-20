@@ -147,6 +147,28 @@ completeBtns.forEach((button) => {
   });
 });
 
+// CLEAR ALL COMPLETED TASKS
+const clearBtns = document.querySelectorAll('.clear-btn');
+
+clearBtns.forEach((button) => {
+  button.addEventListener('click', () => {
+    const unCompletedTodos = state.allTodos.filter(
+      (todo) => todo.isCompleted === 'false'
+    );
+
+    state.allTodos = unCompletedTodos;
+    saveItem();
+
+    const listItems = document.querySelectorAll('.list-item');
+    listItems.forEach((listItem) => {
+      console.log(listItem);
+      if (listItem.dataset.completed === 'true') {
+        listItem.remove();
+      }
+    });
+  });
+});
+
 // VIEW FUNCTIONS
 /**
  * Creates a list item with all its children and styles
@@ -193,9 +215,6 @@ function toggleCheck(button) {
   if (currentValue === 'true') {
     listItem.dataset.completed = 'false';
   }
-
-  console.log(listItem.dataset.completed);
-  console.log(state.allTodos);
 }
 
 // HELPER FUNCTIONS
