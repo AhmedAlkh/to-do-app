@@ -1,0 +1,15 @@
+.list-item[data-completed="true"] {
+  //   display: none;
+  // add light gray for completed task
+  text-decoration: line-through;
+}
+
+.list-item[data-completed="true"] .complete-btn {
+  background-image: var(--clr-primary-gradient);
+  border: none;
+}
+
+// remove pseudo element on hover
+.list-item[data-completed="true"] .complete-btn:hover::after {
+  content: none;
+}

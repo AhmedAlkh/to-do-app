@@ -18,6 +18,13 @@
 // -> When a task is clicked ✅
 // -> User can update that task by entering a new one ✅
 
+// When a user checks a task as complete
+// The complete button will be checked
+// The text will be light gray
+// The text will have a strikethough
+
+//@ts-check
+
 const form = document.querySelector(".create-bar-form");
 const userInput = document.querySelector(".create-bar");
 const list = document.querySelector(".list");
@@ -50,6 +57,7 @@ if (form instanceof HTMLFormElement) {
       const newTodo = {
         id: generateId(),
         text: userInput.value,
+        // isCompleted: false,
       };
 
       const li = createLi(newTodo.id, newTodo.text);
@@ -61,6 +69,7 @@ if (form instanceof HTMLFormElement) {
 
       // Save to local storage
       saveItem();
+      console.log(state.allTodos);
     }
   });
 }
@@ -102,6 +111,23 @@ list.addEventListener("focusout", (e) => {
   }
 });
 
+// COMPLETE BUTTON FUNCTIONALITY
+const completeBtns = document.querySelectorAll(".complete-btn");
+completeBtns.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const listItem = button.parentElement;
+    const currentValue = listItem.dataset.completed;
+
+    if (currentValue === "false") {
+      listItem.dataset.completed = "true";
+    }
+
+    if (currentValue === "true") {
+      listItem.dataset.completed = "false";
+    }
+  });
+});
+
 // VIEW FUNCTIONS
 /**
  * Creates a list item with all its children and styles
@@ -133,6 +159,7 @@ function createLi(id, text) {
   li.className = "list-item";
   li.innerHTML = renderListItem(text);
   li.dataset.id = id;
+  li.dataset.completed = "false";
   return li;
 }
 
