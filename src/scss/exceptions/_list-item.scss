@@ -1,6 +1,6 @@
 .list-item[data-completed="true"] {
   //   display: none;
-  // add light gray for completed task
+  color: var(--clr-lighter-gray-200);
   text-decoration: line-through;
 }
 

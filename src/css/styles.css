@@ -188,6 +188,7 @@ body#dark {
 }
 
 .list-item[data-completed=true] {
+  color: var(--clr-lighter-gray-200);
   text-decoration: line-through;
 }
 

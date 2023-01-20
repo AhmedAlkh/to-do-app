@@ -19,21 +19,21 @@
 // -> User can update that task by entering a new one ✅
 
 // When a user checks a task as complete
-// The complete button will be checked
-// The text will be light gray
-// The text will have a strikethough
+// -> The complete button will be checked ✅
+// -> The text will be light gray ✅
+// -> The text will have a strikethough ✅
 
-const form = document.querySelector('.create-bar-form');
-const userInput = document.querySelector('.create-bar');
-const list = document.querySelector('.list');
-const deleteButtons = document.querySelectorAll('.delete-btn');
+const form = document.querySelector(".create-bar-form");
+const userInput = document.querySelector(".create-bar");
+const list = document.querySelector(".list");
+const deleteButtons = document.querySelectorAll(".delete-btn");
 
 const state = {
   allTodos: [],
 };
 
 // GET TODOS FROM LOCAL STORAGE
-const savedTasksString = localStorage.getItem('taskListItem');
+const savedTasksString = localStorage.getItem("taskListItem");
 if (savedTasksString === null) {
   state.allTodos = [];
 } else {
@@ -48,29 +48,29 @@ if (savedTasksString === null) {
 
 // ADD TODO
 if (form instanceof HTMLFormElement) {
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (userInput instanceof HTMLInputElement) {
       const newTodo = {
         id: generateId(),
         text: userInput.value,
-        isCompleted: 'false',
+        isCompleted: "false",
       };
 
       const li = createLi(newTodo.id, newTodo.text, newTodo.isCompleted);
 
       list?.append(li);
-      userInput.value = '';
+      userInput.value = "";
 
       state.allTodos.push(newTodo);
 
-      const allListItems = document.querySelectorAll('.list-item');
+      const allListItems = document.querySelectorAll(".list-item");
       const listItemId = newTodo.id;
       allListItems.forEach((listItem) => {
         if (listItem.dataset.id === listItemId) {
           const button = listItem.children[0];
-          button.addEventListener('click', () => {
+          button.addEventListener("click", () => {
             toggleCheck(button);
 
             state.allTodos.forEach((todo) => {
@@ -92,9 +92,9 @@ if (form instanceof HTMLFormElement) {
 }
 
 // REMOVE TODO
-list.addEventListener('click', (e) => {
+list.addEventListener("click", (e) => {
   const target = e.target;
-  if (target.classList.contains('d')) {
+  if (target.classList.contains("d")) {
     const deleteBtn = target.parentElement;
     const listItem = deleteBtn.parentElement;
     const listItemId = listItem.dataset.id;
@@ -112,9 +112,9 @@ list.addEventListener('click', (e) => {
 });
 
 // UPDATE TODO
-list.addEventListener('focusout', (e) => {
+list.addEventListener("focusout", (e) => {
   const target = e.target;
-  if (target.classList.contains('list-item-text') === true) {
+  if (target.classList.contains("list-item-text") === true) {
     const targetText = target.textContent;
     const listItem = target.parentElement;
     const listItemId = listItem.dataset.id;
@@ -129,9 +129,9 @@ list.addEventListener('focusout', (e) => {
 });
 
 // COMPLETE BUTTON FUNCTIONALITY
-const completeBtns = document.querySelectorAll('.complete-btn');
+const completeBtns = document.querySelectorAll(".complete-btn");
 completeBtns.forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
     const listItem = button.parentElement;
 
     toggleCheck(button);
@@ -148,21 +148,21 @@ completeBtns.forEach((button) => {
 });
 
 // CLEAR ALL COMPLETED TASKS
-const clearBtns = document.querySelectorAll('.clear-btn');
+const clearBtns = document.querySelectorAll(".clear-btn");
 
 clearBtns.forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
     const unCompletedTodos = state.allTodos.filter(
-      (todo) => todo.isCompleted === 'false'
+      (todo) => todo.isCompleted === "false"
     );
 
     state.allTodos = unCompletedTodos;
     saveItem();
 
-    const listItems = document.querySelectorAll('.list-item');
+    const listItems = document.querySelectorAll(".list-item");
     listItems.forEach((listItem) => {
       console.log(listItem);
-      if (listItem.dataset.completed === 'true') {
+      if (listItem.dataset.completed === "true") {
         listItem.remove();
       }
     });
@@ -175,7 +175,7 @@ clearBtns.forEach((button) => {
  * @param {string} text
  * @returns {string}
  */
-function renderListItem(text, isCompleted = 'false') {
+function renderListItem(text, isCompleted = "false") {
   const listItem = `
     <button class="complete-btn" data-completed=${isCompleted}>
       <img src="/src/assets/images/icon-check.svg" alt="" />
@@ -196,8 +196,8 @@ function renderListItem(text, isCompleted = 'false') {
  */
 
 function createLi(id, text, isCompleted) {
-  const li = document.createElement('li');
-  li.className = 'list-item';
+  const li = document.createElement("li");
+  li.className = "list-item";
   li.innerHTML = renderListItem(text);
   li.dataset.id = id;
   li.dataset.completed = isCompleted;
@@ -208,12 +208,12 @@ function toggleCheck(button) {
   const listItem = button.parentElement;
   const currentValue = listItem.dataset.completed;
 
-  if (currentValue === 'false') {
-    listItem.dataset.completed = 'true';
+  if (currentValue === "false") {
+    listItem.dataset.completed = "true";
   }
 
-  if (currentValue === 'true') {
-    listItem.dataset.completed = 'false';
+  if (currentValue === "true") {
+    listItem.dataset.completed = "false";
   }
 }
 
@@ -223,5 +223,5 @@ function generateId() {
 }
 
 function saveItem() {
-  localStorage.setItem('taskListItem', JSON.stringify(state.allTodos));
+  localStorage.setItem("taskListItem", JSON.stringify(state.allTodos));
 }
