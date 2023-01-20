@@ -23,8 +23,6 @@
 // The text will be light gray
 // The text will have a strikethough
 
-//@ts-check
-
 const form = document.querySelector(".create-bar-form");
 const userInput = document.querySelector(".create-bar");
 const list = document.querySelector(".list");
@@ -57,7 +55,7 @@ if (form instanceof HTMLFormElement) {
       const newTodo = {
         id: generateId(),
         text: userInput.value,
-        // isCompleted: false,
+        isCompleted: "false",
       };
 
       const li = createLi(newTodo.id, newTodo.text);
@@ -67,9 +65,29 @@ if (form instanceof HTMLFormElement) {
 
       state.allTodos.push(newTodo);
 
+      const allListItems = document.querySelectorAll(".list-item");
+      const listItemId = newTodo.id;
+      allListItems.forEach((listItem) => {
+        if (listItem.dataset.id === listItemId) {
+          const button = listItem.children[0];
+          button.addEventListener("click", () => {
+            toggleCheck(button);
+          });
+
+          state.allTodos.forEach((todo) => {
+            if (todo.id === listItem.dataset.id) {
+              todo.isCompleted = listItem.dataset.completed;
+              console.log(state.allTodos);
+
+              // Save to local storage
+              saveItem();
+            }
+          });
+        }
+      });
+
       // Save to local storage
       saveItem();
-      console.log(state.allTodos);
     }
   });
 }
@@ -114,17 +132,8 @@ list.addEventListener("focusout", (e) => {
 // COMPLETE BUTTON FUNCTIONALITY
 const completeBtns = document.querySelectorAll(".complete-btn");
 completeBtns.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    const listItem = button.parentElement;
-    const currentValue = listItem.dataset.completed;
-
-    if (currentValue === "false") {
-      listItem.dataset.completed = "true";
-    }
-
-    if (currentValue === "true") {
-      listItem.dataset.completed = "false";
-    }
+  button.addEventListener("click", () => {
+    toggleCheck(button);
   });
 });
 
@@ -161,6 +170,19 @@ function createLi(id, text) {
   li.dataset.id = id;
   li.dataset.completed = "false";
   return li;
+}
+
+function toggleCheck(button) {
+  const listItem = button.parentElement;
+  const currentValue = listItem.dataset.completed;
+
+  if (currentValue === "false") {
+    listItem.dataset.completed = "true";
+  }
+
+  if (currentValue === "true") {
+    listItem.dataset.completed = "false";
+  }
 }
 
 // HELPER FUNCTIONS
