@@ -23,11 +23,11 @@
 // -> The text will be light gray ✅
 // -> The text will have a strikethough ✅
 
-const form = document.querySelector('.create-bar-form');
-const userInput = document.querySelector('.create-bar');
-const list = document.querySelector('.list');
-const deleteButtons = document.querySelectorAll('.delete-btn');
-const themeToggler = document.getElementById('theme-toggle-btn');
+const form = document.querySelector(".create-bar-form");
+const userInput = document.querySelector(".create-bar");
+const list = document.querySelector(".list");
+const deleteButtons = document.querySelectorAll(".delete-btn");
+const themeToggler = document.getElementById("theme-toggle-btn");
 let toggleState = 0;
 
 const state = {
@@ -35,7 +35,7 @@ const state = {
 };
 
 // GET TODOS AND THEME FROM LOCAL STORAGE
-const savedTasksString = localStorage.getItem('taskListItem');
+const savedTasksString = localStorage.getItem("taskListItem");
 if (savedTasksString === null) {
   state.allTodos = [];
 } else {
@@ -52,29 +52,29 @@ if (savedTasksString === null) {
 
 // ADD TODO
 if (form instanceof HTMLFormElement) {
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (userInput instanceof HTMLInputElement) {
       const newTodo = {
         id: generateId(),
         text: userInput.value,
-        isCompleted: 'false',
+        isCompleted: "false",
       };
 
       const li = createLi(newTodo.id, newTodo.text, newTodo.isCompleted);
 
       list?.append(li);
-      userInput.value = '';
+      userInput.value = "";
 
       state.allTodos.push(newTodo);
 
-      const allListItems = document.querySelectorAll('.list-item');
+      const allListItems = document.querySelectorAll(".list-item");
       const listItemId = newTodo.id;
       allListItems.forEach((listItem) => {
         if (listItem.dataset.id === listItemId) {
           const button = listItem.children[0];
-          button.addEventListener('click', () => {
+          button.addEventListener("click", () => {
             toggleCheck(button);
 
             state.allTodos.forEach((todo) => {
@@ -96,9 +96,9 @@ if (form instanceof HTMLFormElement) {
 }
 
 // REMOVE TODO
-list.addEventListener('click', (e) => {
+list.addEventListener("click", (e) => {
   const target = e.target;
-  if (target.classList.contains('d')) {
+  if (target.classList.contains("d")) {
     const deleteBtn = target.parentElement;
     const listItem = deleteBtn.parentElement;
     const listItemId = listItem.dataset.id;
@@ -117,9 +117,9 @@ list.addEventListener('click', (e) => {
 });
 
 // UPDATE TODO
-list.addEventListener('focusout', (e) => {
+list.addEventListener("focusout", (e) => {
   const target = e.target;
-  if (target.classList.contains('list-item-text') === true) {
+  if (target.classList.contains("list-item-text") === true) {
     const targetText = target.textContent;
     const listItem = target.parentElement;
     const listItemId = listItem.dataset.id;
@@ -134,9 +134,9 @@ list.addEventListener('focusout', (e) => {
 });
 
 // COMPLETE BUTTON FUNCTIONALITY
-const completeBtns = document.querySelectorAll('.complete-btn');
+const completeBtns = document.querySelectorAll(".complete-btn");
 completeBtns.forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
     const listItem = button.parentElement;
 
     toggleCheck(button);
@@ -153,21 +153,20 @@ completeBtns.forEach((button) => {
 });
 
 // CLEAR ALL COMPLETED TASKS
-const clearBtns = document.querySelectorAll('.clear-btn');
+const clearBtns = document.querySelectorAll(".clear-btn");
 
 clearBtns.forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
     const unCompletedTodos = state.allTodos.filter(
-      (todo) => todo.isCompleted === 'false'
+      (todo) => todo.isCompleted === "false"
     );
 
     state.allTodos = unCompletedTodos;
     saveItem();
 
-    const listItems = document.querySelectorAll('.list-item');
+    const listItems = document.querySelectorAll(".list-item");
     listItems.forEach((listItem) => {
-      console.log(listItem);
-      if (listItem.dataset.completed === 'true') {
+      if (listItem.dataset.completed === "true") {
         listItem.remove();
       }
     });
@@ -185,7 +184,7 @@ function countItemsLeft() {
 function renderCount() {
   let count = countItemsLeft();
 
-  let itemsLeftCounter = document.querySelectorAll('.items-left p');
+  let itemsLeftCounter = document.querySelectorAll(".items-left p");
 
   itemsLeftCounter.forEach((p) => {
     if (count === 1) {
@@ -200,7 +199,7 @@ function renderCount() {
 
 // LOAD THEME
 function loadTheme() {
-  const themeObject = JSON.parse(localStorage.getItem('theme'));
+  const themeObject = JSON.parse(localStorage.getItem("theme"));
   const image = themeToggler.firstElementChild;
   const body = document.body;
 
@@ -209,11 +208,11 @@ function loadTheme() {
     const theme = themeObject.theme;
 
     if (toggleState === 0) {
-      image.setAttribute('src', './src/assets/images/icon-moon.svg');
-      body.setAttribute('id', theme);
+      image.setAttribute("src", "./src/assets/images/icon-moon.svg");
+      body.setAttribute("id", theme);
     } else if (toggleState === 1) {
-      image.setAttribute('src', '/src/assets/images/icon-sun.svg');
-      body.setAttribute('id', theme);
+      image.setAttribute("src", "/src/assets/images/icon-sun.svg");
+      body.setAttribute("id", theme);
     }
   }
 }
@@ -223,7 +222,7 @@ loadTheme();
 // TOGGLE DARK MODE
 
 function toggleTheme() {
-  themeToggler.addEventListener('click', () => {
+  themeToggler.addEventListener("click", () => {
     toggleStateFunction();
   });
 }
@@ -237,9 +236,9 @@ function toggleStateFunction() {
   let themeSettings = {};
 
   if (toggleState === 0) {
-    image.setAttribute('src', './src/assets/images/icon-sun.svg');
-    body.setAttribute('id', 'dark');
-    const themeBody = body.getAttribute('id');
+    image.setAttribute("src", "./src/assets/images/icon-sun.svg");
+    body.setAttribute("id", "dark");
+    const themeBody = body.getAttribute("id");
     toggleState = 1;
 
     themeSettings = {
@@ -247,22 +246,18 @@ function toggleStateFunction() {
       currentToggleState: toggleState,
     };
 
-    localStorage.setItem('theme', JSON.stringify(themeSettings));
-
-    console.log(toggleState);
+    localStorage.setItem("theme", JSON.stringify(themeSettings));
   } else if (toggleState === 1) {
-    image.setAttribute('src', '/src/assets/images/icon-moon.svg');
-    body.setAttribute('id', 'light');
-    const themeBody = body.getAttribute('id');
+    image.setAttribute("src", "/src/assets/images/icon-moon.svg");
+    body.setAttribute("id", "light");
+    const themeBody = body.getAttribute("id");
     toggleState = 0;
 
     themeSettings = {
       theme: themeBody,
       currentToggleState: toggleState,
     };
-    localStorage.setItem('theme', JSON.stringify(themeSettings));
-
-    console.log(toggleState);
+    localStorage.setItem("theme", JSON.stringify(themeSettings));
   }
 }
 
@@ -272,7 +267,7 @@ function toggleStateFunction() {
  * @param {string} text
  * @returns {string}
  */
-function renderListItem(text, isCompleted = 'false') {
+function renderListItem(text, isCompleted = "false") {
   const listItem = `
     <button class="complete-btn" data-completed=${isCompleted}>
       <img src="/src/assets/images/icon-check.svg" alt="" />
@@ -293,8 +288,8 @@ function renderListItem(text, isCompleted = 'false') {
  */
 
 function createLi(id, text, isCompleted) {
-  const li = document.createElement('li');
-  li.className = 'list-item';
+  const li = document.createElement("li");
+  li.className = "list-item";
   li.innerHTML = renderListItem(text);
   li.dataset.id = id;
   li.dataset.completed = isCompleted;
@@ -305,12 +300,12 @@ function toggleCheck(button) {
   const listItem = button.parentElement;
   const currentValue = listItem.dataset.completed;
 
-  if (currentValue === 'false') {
-    listItem.dataset.completed = 'true';
+  if (currentValue === "false") {
+    listItem.dataset.completed = "true";
   }
 
-  if (currentValue === 'true') {
-    listItem.dataset.completed = 'false';
+  if (currentValue === "true") {
+    listItem.dataset.completed = "false";
   }
 }
 
@@ -320,5 +315,5 @@ function generateId() {
 }
 
 function saveItem() {
-  localStorage.setItem('taskListItem', JSON.stringify(state.allTodos));
+  localStorage.setItem("taskListItem", JSON.stringify(state.allTodos));
 }
