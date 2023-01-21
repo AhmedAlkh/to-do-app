@@ -200,29 +200,26 @@ function renderCount() {
 // TOGGLE DARK MODE
 // let currentTheme = "light";
 
-// function toggleTheme() {
-//   if (currentTheme === "light") {
-//     currentTheme = "dark";
-//     document.body.classList.add("dark");
-//     document.getElementById("theme-toggle-btn");
-//     document
-//       .getElementById("theme-toggle-btn")
-//       .setAttribute("aria-label", "Enable light mode");
-//   } else {
-//     currentTheme = "light";
-//     document.body.classList.remove("dark");
-//     document.getElementById("theme-toggle-btn");
-//     document
-//       .getElementById("theme-toggle-btn")
-//       .setAttribute("aria-label", "Enable dark mode");
-//   }
-// }
+function toggleTheme() {
+  let toggleState = 0;
+  const themeToggler = document.getElementById('theme-toggle-btn');
+  const body = document.body;
 
-// document
-//   .getElementById("theme-toggle-btn")
-//   .addEventListener("click", toggleTheme);
+  themeToggler.addEventListener('click', (e) => {
+    const image = themeToggler.firstElementChild;
+    if (toggleState === 0) {
+      image.setAttribute('src', './src/assets/images/icon-sun.svg');
+      body.setAttribute('id', 'dark');
+      toggleState = toggleState + 1;
+    } else if (toggleState === 1) {
+      image.setAttribute('src', '/src/assets/images/icon-moon.svg');
+      body.setAttribute('id', 'light');
+      toggleState = toggleState - 1;
+    }
+  });
+}
 
-// remove #light from light theme, change body#dark to body .dark
+toggleTheme();
 
 // VIEW FUNCTIONS
 /**
