@@ -123,11 +123,16 @@ list.addEventListener("focusout", (e) => {
     const targetText = target.textContent;
     const listItem = target.parentElement;
     const listItemId = listItem.dataset.id;
+    const targetTextPattern = targetText.replace(/ /g, "").trim();
 
     for (var i = 0; i < state.allTodos.length; i++) {
       if (state.allTodos[i].id === listItemId) {
-        state.allTodos[i].text = targetText;
-        saveItem();
+        if (targetTextPattern.length === 0) {
+          target.textContent = state.allTodos[i].text;
+        } else {
+          state.allTodos[i].text = targetText;
+          saveItem();
+        }
       }
     }
   }
@@ -168,6 +173,7 @@ clearBtns.forEach((button) => {
     listItems.forEach((listItem) => {
       if (listItem.dataset.completed === "true") {
         listItem.remove();
+        renderCount();
       }
     });
   });
