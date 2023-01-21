@@ -84,7 +84,6 @@ if (form instanceof HTMLFormElement) {
           });
         }
       });
-
       // Save to local storage
       saveItem();
     }
@@ -168,6 +167,51 @@ clearBtns.forEach((button) => {
     });
   });
 });
+
+// When a task is added to the list, the counter increases
+// When a task is checked as complete, the counter decreases
+
+// SHOW HOW MANY ITEMS LEFT
+function countItemsLeft() {
+  let itemsLeft = state.allTodos.filter(function (todo) {
+    return todo.isCompleted;
+  });
+  return itemsLeft.length;
+}
+
+let count = countItemsLeft();
+
+let itemsLeftCounter = document.querySelector(".items-left p");
+itemsLeftCounter.textContent = count.toString();
+
+console.log(itemsLeftCounter);
+
+// TOGGLE DARK MODE
+// let currentTheme = "light";
+
+// function toggleTheme() {
+//   if (currentTheme === "light") {
+//     currentTheme = "dark";
+//     document.body.classList.add("dark");
+//     document.getElementById("theme-toggle-btn");
+//     document
+//       .getElementById("theme-toggle-btn")
+//       .setAttribute("aria-label", "Enable light mode");
+//   } else {
+//     currentTheme = "light";
+//     document.body.classList.remove("dark");
+//     document.getElementById("theme-toggle-btn");
+//     document
+//       .getElementById("theme-toggle-btn")
+//       .setAttribute("aria-label", "Enable dark mode");
+//   }
+// }
+
+// document
+//   .getElementById("theme-toggle-btn")
+//   .addEventListener("click", toggleTheme);
+
+// remove #light from light theme, change body#dark to body .dark
 
 // VIEW FUNCTIONS
 /**
