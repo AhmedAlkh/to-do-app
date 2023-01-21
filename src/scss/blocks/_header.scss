@@ -1,5 +1,5 @@
 header {
-  background-image: url(/src/assets/images/bg-mobile-light.jpg);
+  background-image: var(--bg-image-mobile);
   background-size: cover;
   color: var(--clr-white);
   padding: 48px 26px;
@@ -17,7 +17,7 @@ header {
   }
 
   @media (min-width: 48rem) {
-    background-image: url(/src/assets/images/bg-desktop-light.jpg);
+    background-image: var(--bg-image-desktop);
   }
 
   form {

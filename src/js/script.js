@@ -27,12 +27,14 @@ const form = document.querySelector('.create-bar-form');
 const userInput = document.querySelector('.create-bar');
 const list = document.querySelector('.list');
 const deleteButtons = document.querySelectorAll('.delete-btn');
+const themeToggler = document.getElementById('theme-toggle-btn');
+let toggleState = 0;
 
 const state = {
   allTodos: [],
 };
 
-// GET TODOS FROM LOCAL STORAGE
+// GET TODOS AND THEME FROM LOCAL STORAGE
 const savedTasksString = localStorage.getItem('taskListItem');
 if (savedTasksString === null) {
   state.allTodos = [];
@@ -172,9 +174,6 @@ clearBtns.forEach((button) => {
   });
 });
 
-// When a task is added to the list, the counter increases
-// When a task is checked as complete, the counter decreases
-
 // SHOW HOW MANY ITEMS LEFT
 function countItemsLeft() {
   let itemsLeft = state.allTodos.filter(function (todo) {
@@ -197,29 +196,75 @@ function renderCount() {
   });
 }
 
-// TOGGLE DARK MODE
-// let currentTheme = "light";
+// THEME-ING
 
-function toggleTheme() {
-  let toggleState = 0;
-  const themeToggler = document.getElementById('theme-toggle-btn');
+// LOAD THEME
+function loadTheme() {
+  const themeObject = JSON.parse(localStorage.getItem('theme'));
+  const image = themeToggler.firstElementChild;
   const body = document.body;
 
-  themeToggler.addEventListener('click', (e) => {
-    const image = themeToggler.firstElementChild;
+  if (themeObject !== null) {
+    toggleState = themeObject.currentToggleState;
+    const theme = themeObject.theme;
+
     if (toggleState === 0) {
-      image.setAttribute('src', './src/assets/images/icon-sun.svg');
-      body.setAttribute('id', 'dark');
-      toggleState = toggleState + 1;
+      image.setAttribute('src', './src/assets/images/icon-moon.svg');
+      body.setAttribute('id', theme);
     } else if (toggleState === 1) {
-      image.setAttribute('src', '/src/assets/images/icon-moon.svg');
-      body.setAttribute('id', 'light');
-      toggleState = toggleState - 1;
+      image.setAttribute('src', '/src/assets/images/icon-sun.svg');
+      body.setAttribute('id', theme);
     }
+  }
+}
+
+loadTheme();
+
+// TOGGLE DARK MODE
+
+function toggleTheme() {
+  themeToggler.addEventListener('click', () => {
+    toggleStateFunction();
   });
 }
 
 toggleTheme();
+
+function toggleStateFunction() {
+  const body = document.body;
+  const image = themeToggler.firstElementChild;
+
+  let themeSettings = {};
+
+  if (toggleState === 0) {
+    image.setAttribute('src', './src/assets/images/icon-sun.svg');
+    body.setAttribute('id', 'dark');
+    const themeBody = body.getAttribute('id');
+    toggleState = 1;
+
+    themeSettings = {
+      theme: themeBody,
+      currentToggleState: toggleState,
+    };
+
+    localStorage.setItem('theme', JSON.stringify(themeSettings));
+
+    console.log(toggleState);
+  } else if (toggleState === 1) {
+    image.setAttribute('src', '/src/assets/images/icon-moon.svg');
+    body.setAttribute('id', 'light');
+    const themeBody = body.getAttribute('id');
+    toggleState = 0;
+
+    themeSettings = {
+      theme: themeBody,
+      currentToggleState: toggleState,
+    };
+    localStorage.setItem('theme', JSON.stringify(themeSettings));
+
+    console.log(toggleState);
+  }
+}
 
 // VIEW FUNCTIONS
 /**

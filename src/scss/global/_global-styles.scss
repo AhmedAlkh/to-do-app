@@ -20,7 +20,7 @@
   --clr-blueish-white: #e3e4f1;
 
   // Font Families
-  --ff-josefin-sans: "Josefin Sans", sans-serif;
+  --ff-josefin-sans: 'Josefin Sans', sans-serif;
 }
 
 body {
@@ -85,6 +85,10 @@ body#light {
   // Hover
   --text-tabs: var(--clr-light-gray-400);
   --text-hover-tabs: var(--clr-dark-grayish-blue-200);
+
+  // Bg image
+  --bg-image-mobile: url('/src/assets/images/bg-mobile-light.jpg');
+  --bg-image-desktop: url('/src/assets/images/bg-desktop-light.jpg');
 }
 
 body#dark {
@@ -98,6 +102,10 @@ body#dark {
   // Hover
   --text-tabs: var(--clr-dolphin-gray);
   --text-hover-tabs: var(---clr-blueish-white);
+
+  // Bg image
+  --bg-image-mobile: url('/src/assets/images/bg-mobile-dark.jpg');
+  --bg-image-desktop: url('/src/assets/images/bg-desktop-dark.jpg');
 }
 
 //TODO: DOESN'T WORK, FIX -- It overrides some of the dark-theme colours

@@ -76,8 +76,8 @@ select {
 /* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
   *,
-  *::before,
-  *::after {
+*::before,
+*::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -166,6 +166,8 @@ body#light {
   --text-search-input-placeholder: var(--clr-light-gray-400);
   --text-tabs: var(--clr-light-gray-400);
   --text-hover-tabs: var(--clr-dark-grayish-blue-200);
+  --bg-image-mobile: url("/src/assets/images/bg-mobile-light.jpg");
+  --bg-image-desktop: url("/src/assets/images/bg-desktop-light.jpg");
 }
 
 body#dark {
@@ -178,6 +180,8 @@ body#dark {
   --text-search-input-placeholder: var(--clr-dark-gray-text);
   --text-tabs: var(--clr-dolphin-gray);
   --text-hover-tabs: var(---clr-blueish-white);
+  --bg-image-mobile: url("/src/assets/images/bg-mobile-dark.jpg");
+  --bg-image-desktop: url("/src/assets/images/bg-desktop-dark.jpg");
 }
 
 .center {
@@ -222,7 +226,7 @@ body#dark {
 }
 
 header {
-  background-image: url(/src/assets/images/bg-mobile-light.jpg);
+  background-image: var(--bg-image-mobile);
   background-size: cover;
   color: var(--clr-white);
   padding: 48px 26px;
@@ -240,7 +244,7 @@ header .todo-wrapper {
 }
 @media (min-width: 48rem) {
   header {
-    background-image: url(/src/assets/images/bg-desktop-light.jpg);
+    background-image: var(--bg-image-desktop);
   }
 }
 header form {
@@ -372,7 +376,7 @@ main .text-wrapper {
     display: block;
   }
   .status-bar .wrapper,
-  .status-bar .tabs {
+.status-bar .tabs {
     display: none;
   }
   .status-bar .alternate-status-bar {
