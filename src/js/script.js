@@ -23,11 +23,11 @@
 // -> The text will be light gray ✅
 // -> The text will have a strikethough ✅
 
-const form = document.querySelector(".create-bar-form");
-const userInput = document.querySelector(".create-bar");
-const list = document.querySelector(".list");
-const deleteButtons = document.querySelectorAll(".delete-btn");
-const themeToggler = document.getElementById("theme-toggle-btn");
+const form = document.querySelector('.create-bar-form');
+const userInput = document.querySelector('.create-bar');
+const list = document.querySelector('.list');
+const deleteButtons = document.querySelectorAll('.delete-btn');
+const themeToggler = document.getElementById('theme-toggle-btn');
 let toggleState = 0;
 
 const state = {
@@ -35,7 +35,7 @@ const state = {
 };
 
 // GET TODOS AND THEME FROM LOCAL STORAGE
-const savedTasksString = localStorage.getItem("taskListItem");
+const savedTasksString = localStorage.getItem('taskListItem');
 if (savedTasksString === null) {
   state.allTodos = [];
 } else {
@@ -52,29 +52,29 @@ if (savedTasksString === null) {
 
 // ADD TODO
 if (form instanceof HTMLFormElement) {
-  form?.addEventListener("submit", (e) => {
+  form?.addEventListener('submit', (e) => {
     e.preventDefault();
 
     if (userInput instanceof HTMLInputElement) {
       const newTodo = {
         id: generateId(),
         text: userInput.value,
-        isCompleted: "false",
+        isCompleted: 'false',
       };
 
       const li = createLi(newTodo.id, newTodo.text, newTodo.isCompleted);
 
       list?.append(li);
-      userInput.value = "";
+      userInput.value = '';
 
       state.allTodos.push(newTodo);
 
-      const allListItems = document.querySelectorAll(".list-item");
+      const allListItems = document.querySelectorAll('.list-item');
       const listItemId = newTodo.id;
       allListItems.forEach((listItem) => {
         if (listItem.dataset.id === listItemId) {
           const button = listItem.children[0];
-          button.addEventListener("click", () => {
+          button.addEventListener('click', () => {
             toggleCheck(button);
 
             state.allTodos.forEach((todo) => {
@@ -96,9 +96,9 @@ if (form instanceof HTMLFormElement) {
 }
 
 // REMOVE TODO
-list.addEventListener("click", (e) => {
+list.addEventListener('click', (e) => {
   const target = e.target;
-  if (target.classList.contains("d")) {
+  if (target.classList.contains('d')) {
     const deleteBtn = target.parentElement;
     const listItem = deleteBtn.parentElement;
     const listItemId = listItem.dataset.id;
@@ -118,13 +118,13 @@ list.addEventListener("click", (e) => {
 });
 
 // UPDATE TODO
-list.addEventListener("focusout", (e) => {
+list.addEventListener('focusout', (e) => {
   const target = e.target;
-  if (target.classList.contains("list-item-text") === true) {
+  if (target.classList.contains('list-item-text') === true) {
     const targetText = target.textContent;
     const listItem = target.parentElement;
     const listItemId = listItem.dataset.id;
-    const targetTextPattern = targetText.replace(/ /g, "").trim();
+    const targetTextPattern = targetText.replace(/ /g, '').trim();
 
     for (var i = 0; i < state.allTodos.length; i++) {
       if (state.allTodos[i].id === listItemId) {
@@ -141,9 +141,9 @@ list.addEventListener("focusout", (e) => {
 
 // COMPLETE BUTTON FUNCTIONALITY
 function completeTask() {
-  const completeBtns = document.querySelectorAll(".complete-btn");
+  const completeBtns = document.querySelectorAll('.complete-btn');
   completeBtns.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       const listItem = button.parentElement;
 
       toggleCheck(button);
@@ -163,20 +163,20 @@ function completeTask() {
 completeTask();
 
 // CLEAR ALL COMPLETED TASKS
-const clearBtns = document.querySelectorAll(".clear-btn");
+const clearBtns = document.querySelectorAll('.clear-btn');
 
 clearBtns.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener('click', () => {
     const unCompletedTodos = state.allTodos.filter(
-      (todo) => todo.isCompleted === "false"
+      (todo) => todo.isCompleted === 'false'
     );
 
     state.allTodos = unCompletedTodos;
     saveItem();
 
-    const listItems = document.querySelectorAll(".list-item");
+    const listItems = document.querySelectorAll('.list-item');
     listItems.forEach((listItem) => {
-      if (listItem.dataset.completed === "true") {
+      if (listItem.dataset.completed === 'true') {
         listItem.remove();
         renderCount();
       }
@@ -195,7 +195,7 @@ function countItemsLeft(array) {
 function renderCount(array = state.allTodos) {
   let count = countItemsLeft(array);
 
-  let itemsLeftCounter = document.querySelectorAll(".items-left p");
+  let itemsLeftCounter = document.querySelectorAll('.items-left p');
 
   itemsLeftCounter.forEach((p) => {
     if (count === 1) {
@@ -210,7 +210,7 @@ function renderCount(array = state.allTodos) {
 
 // LOAD THEME
 function loadTheme() {
-  const themeObject = JSON.parse(localStorage.getItem("theme"));
+  const themeObject = JSON.parse(localStorage.getItem('theme'));
   const image = themeToggler.firstElementChild;
   const body = document.body;
 
@@ -219,11 +219,11 @@ function loadTheme() {
     const theme = themeObject.theme;
 
     if (toggleState === 0) {
-      image.setAttribute("src", "./src/assets/images/icon-moon.svg");
-      body.setAttribute("id", theme);
+      image.setAttribute('src', './src/assets/images/icon-moon.svg');
+      body.setAttribute('id', theme);
     } else if (toggleState === 1) {
-      image.setAttribute("src", "/src/assets/images/icon-sun.svg");
-      body.setAttribute("id", theme);
+      image.setAttribute('src', '/src/assets/images/icon-sun.svg');
+      body.setAttribute('id', theme);
     }
   }
 }
@@ -233,7 +233,7 @@ loadTheme();
 // TOGGLE DARK MODE
 
 function toggleTheme() {
-  themeToggler.addEventListener("click", () => {
+  themeToggler.addEventListener('click', () => {
     toggleStateFunction();
   });
 }
@@ -247,9 +247,9 @@ function toggleStateFunction() {
   let themeSettings = {};
 
   if (toggleState === 0) {
-    image.setAttribute("src", "./src/assets/images/icon-sun.svg");
-    body.setAttribute("id", "dark");
-    const themeBody = body.getAttribute("id");
+    image.setAttribute('src', './src/assets/images/icon-sun.svg');
+    body.setAttribute('id', 'dark');
+    const themeBody = body.getAttribute('id');
     toggleState = 1;
 
     themeSettings = {
@@ -257,29 +257,29 @@ function toggleStateFunction() {
       currentToggleState: toggleState,
     };
 
-    localStorage.setItem("theme", JSON.stringify(themeSettings));
+    localStorage.setItem('theme', JSON.stringify(themeSettings));
   } else if (toggleState === 1) {
-    image.setAttribute("src", "/src/assets/images/icon-moon.svg");
-    body.setAttribute("id", "light");
-    const themeBody = body.getAttribute("id");
+    image.setAttribute('src', '/src/assets/images/icon-moon.svg');
+    body.setAttribute('id', 'light');
+    const themeBody = body.getAttribute('id');
     toggleState = 0;
 
     themeSettings = {
       theme: themeBody,
       currentToggleState: toggleState,
     };
-    localStorage.setItem("theme", JSON.stringify(themeSettings));
+    localStorage.setItem('theme', JSON.stringify(themeSettings));
   }
 }
 
 // SET DISPLAY WHEN NO TASKS ARE LEFT
 function resetMain() {
-  const main = document.querySelector("main");
+  const main = document.querySelector('main');
 
   if (state.allTodos.length === 0) {
-    main.style.transform = "translateY(0)";
+    main.style.transform = 'translateY(0)';
   } else {
-    main.style.transform = "translateY(-24px)";
+    main.style.transform = 'translateY(-24px)';
   }
 }
 
@@ -287,20 +287,20 @@ resetMain();
 
 // FILTER TASKS
 function filterTasks() {
-  const tabs = document.querySelectorAll(".tabs");
+  const tabs = document.querySelectorAll('.tabs');
 
   tabs.forEach((tab) => {
-    tab.addEventListener("click", (e) => {
+    tab.addEventListener('click', (e) => {
       const button = e.target;
-      if (button.classList.contains("all")) {
+      if (button.classList.contains('all')) {
         renderTodos(state.allTodos);
         toggleAriaSelected(button);
         completeTask();
         renderCount();
       }
-      if (button.classList.contains("active")) {
+      if (button.classList.contains('active')) {
         const activeTodos = state.allTodos.filter((todo) => {
-          return todo.isCompleted === "false";
+          return todo.isCompleted === 'false';
         });
 
         renderTodos(activeTodos);
@@ -309,9 +309,9 @@ function filterTasks() {
         renderCount(activeTodos);
       }
 
-      if (button.classList.contains("completed")) {
+      if (button.classList.contains('completed')) {
         const completeTodos = state.allTodos.filter((todo) => {
-          return todo.isCompleted === "true";
+          return todo.isCompleted === 'true';
         });
 
         renderTodos(completeTodos);
@@ -322,8 +322,64 @@ function filterTasks() {
     });
   });
 }
-
 filterTasks();
+
+function dragAndDrop() {
+  list.addEventListener('dragstart', (e) => {
+    const target = e.target;
+    if (target.getAttribute('draggable') === 'true') {
+      target.classList.add('dragging');
+    }
+  });
+
+  list.addEventListener('dragend', (e) => {
+    const target = e.target;
+    if (target.getAttribute('draggable') === 'true') {
+      target.classList.remove('dragging');
+
+      // SAVING FUNCTIONALITY GOES HERE
+    }
+
+    list.addEventListener('dragover', (e) => {
+      // dragging and appending a child to a container is disabled by default, this is to prevent that default
+      e.preventDefault();
+
+      const currentlyDraggedItem = document.querySelector('.dragging');
+      // the element positioned right after the currently being dragged element
+      const afterElement = getDragAfterElement(list, e.clientY);
+
+      if (afterElement == null) {
+        list.appendChild(currentlyDraggedItem);
+      } else {
+        list.insertBefore(currentlyDraggedItem, afterElement);
+      }
+    });
+  });
+}
+dragAndDrop();
+
+/**
+ * Returns the element that comes after the current position of a dragged element
+ */
+function getDragAfterElement(container, y) {
+  const draggableElements = [
+    ...container.querySelectorAll('[draggable="true"]:not(.dragging)'),
+  ];
+
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
+}
 
 // VIEW FUNCTIONS
 /**
@@ -331,7 +387,7 @@ filterTasks();
  * @param {string} text
  * @returns {string}
  */
-function renderListItem(text, isCompleted = "false") {
+function renderListItem(text, isCompleted = 'false') {
   const listItem = `
     <button class="complete-btn" data-completed=${isCompleted}>
       <img src="/src/assets/images/icon-check.svg" alt="" />
@@ -352,9 +408,10 @@ function renderListItem(text, isCompleted = "false") {
  */
 
 function createLi(id, text, isCompleted) {
-  const li = document.createElement("li");
-  li.className = "list-item";
+  const li = document.createElement('li');
+  li.className = 'list-item';
   li.innerHTML = renderListItem(text);
+  li.draggable = 'true';
   li.dataset.id = id;
   li.dataset.completed = isCompleted;
   return li;
@@ -364,17 +421,17 @@ function toggleCheck(button) {
   const listItem = button.parentElement;
   const currentValue = listItem.dataset.completed;
 
-  if (currentValue === "false") {
-    listItem.dataset.completed = "true";
+  if (currentValue === 'false') {
+    listItem.dataset.completed = 'true';
   }
 
-  if (currentValue === "true") {
-    listItem.dataset.completed = "false";
+  if (currentValue === 'true') {
+    listItem.dataset.completed = 'false';
   }
 }
 
 function renderTodos(array) {
-  list.innerHTML = "";
+  list.innerHTML = '';
 
   array.forEach((todo) => {
     const li = createLi(todo.id, todo.text, todo.isCompleted);
@@ -383,15 +440,15 @@ function renderTodos(array) {
 }
 
 function toggleAriaSelected(tab) {
-  const tabs = document.querySelectorAll(".tabs button");
+  const tabs = document.querySelectorAll('.tabs button');
 
   tabs.forEach((tab) => {
-    tab.setAttribute("aria-selected", "");
+    tab.setAttribute('aria-selected', '');
   });
 
-  const isSelected = tab.getAttribute("aria-selected");
-  if (isSelected == null || isSelected === "") {
-    tab.setAttribute("aria-selected", "true");
+  const isSelected = tab.getAttribute('aria-selected');
+  if (isSelected == null || isSelected === '') {
+    tab.setAttribute('aria-selected', 'true');
   }
 }
 
@@ -401,5 +458,5 @@ function generateId() {
 }
 
 function saveItem() {
-  localStorage.setItem("taskListItem", JSON.stringify(state.allTodos));
+  localStorage.setItem('taskListItem', JSON.stringify(state.allTodos));
 }
