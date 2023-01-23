@@ -110,10 +110,13 @@ body#dark {
   --clear-completed-text: var(--clr-dolphin-gray);
   --text-tabs: var(--clr-dolphin-gray);
   .create-bar {
-    box-shadow: none;
+    box-shadow: 0px -10px 20px -12px rgba(0, 1, 14, 0.785);
   }
   .todo-list {
-    box-shadow: none;
+    box-shadow: 0px -10px 20px -12px rgba(0, 1, 14, 0.785);
+  }
+  .wrapper {
+    box-shadow: 0px -10px 20px -12px rgba(0, 1, 14, 0.785);
   }
   // Hover
   --text-hover-tabs: var(--clr-white);

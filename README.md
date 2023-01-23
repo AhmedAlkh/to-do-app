@@ -99,11 +99,6 @@ This challenge is completely free. Please share it with anyone who will find it 
 **Have fun building!** 🚀
 
 ToDo:
-Fix darkmode template
-add favicon
 update readme
 deploy to Netlify
 submit to front-end mentor
-
-change box shadow colors on dark mode to be shade of black rather than white
-remove box shadow all together for dark mode when app is in desktop mode
