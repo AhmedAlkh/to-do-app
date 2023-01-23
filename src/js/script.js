@@ -113,6 +113,7 @@ list.addEventListener("click", (e) => {
 
     saveItem();
     renderCount();
+    resetMain();
   }
 });
 
@@ -267,6 +268,53 @@ function toggleStateFunction() {
   }
 }
 
+// SET DISPLAY WHEN NO TASKS ARE LEFT
+function resetMain() {
+  const main = document.querySelector("main");
+
+  if (state.allTodos.length === 0) {
+    main.style.transform = "translateY(0)";
+  } else {
+    main.style.transform = "translateY(-24px)";
+  }
+}
+
+resetMain();
+
+// FILTER TASKS
+function filterTasks() {
+  const tabs = document.querySelectorAll(".tabs");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", (e) => {
+      const button = e.target;
+      if (button.classList.contains("all")) {
+        renderTodos(state.allTodos);
+        toggleAriaSelected(button);
+      }
+      if (button.classList.contains("active")) {
+        const activeTodos = state.allTodos.filter((todo) => {
+          return todo.isCompleted === "false";
+        });
+
+        renderTodos(activeTodos);
+        toggleAriaSelected(button);
+      }
+
+      if (button.classList.contains("completed")) {
+        const completeTodos = state.allTodos.filter((todo) => {
+          return todo.isCompleted === "true";
+        });
+
+        renderTodos(completeTodos);
+        toggleAriaSelected(button);
+      }
+    });
+  });
+}
+
+filterTasks();
+
 // VIEW FUNCTIONS
 /**
  * Creates a list item with all its children and styles
@@ -312,6 +360,28 @@ function toggleCheck(button) {
 
   if (currentValue === "true") {
     listItem.dataset.completed = "false";
+  }
+}
+
+function renderTodos(array) {
+  list.innerHTML = "";
+
+  array.forEach((todo) => {
+    const li = createLi(todo.id, todo.text, todo.isCompleted);
+    list.append(li);
+  });
+}
+
+function toggleAriaSelected(tab) {
+  const tabs = document.querySelectorAll(".tabs button");
+
+  tabs.forEach((tab) => {
+    tab.setAttribute("aria-selected", "");
+  });
+
+  const isSelected = tab.getAttribute("aria-selected");
+  if (isSelected == null || isSelected === "") {
+    tab.setAttribute("aria-selected", "true");
   }
 }
 

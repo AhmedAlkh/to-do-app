@@ -50,17 +50,7 @@
     </header>
     <main>
       <div class="todo-list center">
-        <ul class="list">
-          <li class="list-item" style="pointer-events: none">
-            <button class="complete-btn">
-              <img src="/src/assets/images/icon-check.svg" alt="" />
-            </button>
-            <p class="list-item-text">Add a task to the list</p>
-            <button class="delete-btn">
-              <img src="/src/assets/images/icon-cross.svg" alt="" />
-            </button>
-          </li>
-        </ul>
+        <ul class="list"></ul>
       </div>
       <div class="status-bar center">
         <div class="wrapper">
@@ -70,9 +60,9 @@
           <button class="clear-btn">Clear Completed</button>
         </div>
         <div class="tabs">
-          <button>All</button>
-          <button>Active</button>
-          <button>Completed</button>
+          <button class="tab all" aria-selected="true">All</button>active
+          <button class="tab active">Active</button>
+          <button class="tab completed">Completed</button>all
         </div>
 
         <div class="alternate-status-bar">
@@ -82,9 +72,9 @@
           <button class="clear-btn">Clear Completed</button>
 
           <div class="tabs">
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
+            <button class="tab all" aria-selected="true">All</button>
+            <button class="tab active">Active</button>
+            <button class="tab completed">Completed</button>
           </div>
         </div>
       </div>
