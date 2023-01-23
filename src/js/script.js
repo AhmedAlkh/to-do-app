@@ -140,23 +140,27 @@ list.addEventListener("focusout", (e) => {
 });
 
 // COMPLETE BUTTON FUNCTIONALITY
-const completeBtns = document.querySelectorAll(".complete-btn");
-completeBtns.forEach((button) => {
-  button.addEventListener("click", () => {
-    const listItem = button.parentElement;
+function completeTask() {
+  const completeBtns = document.querySelectorAll(".complete-btn");
+  completeBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+      const listItem = button.parentElement;
 
-    toggleCheck(button);
+      toggleCheck(button);
 
-    state.allTodos.forEach((todo) => {
-      if (todo.id === listItem.dataset.id) {
-        todo.isCompleted = listItem.dataset.completed;
+      state.allTodos.forEach((todo) => {
+        if (todo.id === listItem.dataset.id) {
+          todo.isCompleted = listItem.dataset.completed;
 
-        // Save to local storage
-        saveItem();
-      }
+          // Save to local storage
+          saveItem();
+        }
+      });
     });
   });
-});
+}
+
+completeTask();
 
 // CLEAR ALL COMPLETED TASKS
 const clearBtns = document.querySelectorAll(".clear-btn");
@@ -181,15 +185,15 @@ clearBtns.forEach((button) => {
 });
 
 // SHOW HOW MANY ITEMS LEFT
-function countItemsLeft() {
-  let itemsLeft = state.allTodos.filter(function (todo) {
+function countItemsLeft(array) {
+  let itemsLeft = array.filter(function (todo) {
     return todo.isCompleted;
   });
   return itemsLeft.length;
 }
 
-function renderCount() {
-  let count = countItemsLeft();
+function renderCount(array = state.allTodos) {
+  let count = countItemsLeft(array);
 
   let itemsLeftCounter = document.querySelectorAll(".items-left p");
 
@@ -291,6 +295,8 @@ function filterTasks() {
       if (button.classList.contains("all")) {
         renderTodos(state.allTodos);
         toggleAriaSelected(button);
+        completeTask();
+        renderCount();
       }
       if (button.classList.contains("active")) {
         const activeTodos = state.allTodos.filter((todo) => {
@@ -299,6 +305,8 @@ function filterTasks() {
 
         renderTodos(activeTodos);
         toggleAriaSelected(button);
+        completeTask();
+        renderCount(activeTodos);
       }
 
       if (button.classList.contains("completed")) {
@@ -308,6 +316,8 @@ function filterTasks() {
 
         renderTodos(completeTodos);
         toggleAriaSelected(button);
+        completeTask();
+        renderCount(completeTodos);
       }
     });
   });
