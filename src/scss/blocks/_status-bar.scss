@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   row-gap: 24px;
+  background-color: var(--bg-status-bar);
 
   .wrapper {
     grid-column: 1/-1;
@@ -17,15 +18,15 @@
   }
 
   .items-left {
-    color: var(--clr-light-gray-400);
+    color: var(--items-left-text);
   }
 
   .clear-btn {
-    color: var(--clr-light-gray-400);
+    color: var(--clear-completed-text);
   }
 
   .clear-btn:hover {
-    color: var(--clr-dark-grayish-blue-200);
+    color: var(--clear-completed-text-hover);
   }
 
   .tabs {
@@ -54,6 +55,7 @@
     }
 
     .alternate-status-bar {
+      background-color: var(--bg-status-bar);
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       align-items: center;

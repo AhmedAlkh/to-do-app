@@ -20,7 +20,7 @@
   --clr-blueish-white: #e3e4f1;
 
   // Font Families
-  --ff-josefin-sans: 'Josefin Sans', sans-serif;
+  --ff-josefin-sans: "Josefin Sans", sans-serif;
 }
 
 body {
@@ -68,7 +68,7 @@ input::placeholder {
 }
 
 .text-wrapper {
-  color: var(--clr-light-gray-400);
+  color: var(--drag-drop-text);
 }
 
 // THEMING
@@ -82,13 +82,18 @@ body#light {
   --text-header-primary: var(--clr-white);
   --text-search-input: var(--clr-dark-grayish-blue-400);
   --text-search-input-placeholder: var(--clr-light-gray-400);
-  // Hover
+  --bg-status-bar: var(--clr-white);
+  --drag-drop-text: var(--clr-light-gray-400);
+  --items-left-text: var(--clr-light-gray-400);
+  --clear-completed-text: var(--clr-light-gray-400);
   --text-tabs: var(--clr-light-gray-400);
+  // Hover
   --text-hover-tabs: var(--clr-dark-grayish-blue-200);
+  --clear-completed-text-hover: var(--clr-dark-grayish-blue-200);
 
   // Bg image
-  --bg-image-mobile: url('/src/assets/images/bg-mobile-light.jpg');
-  --bg-image-desktop: url('/src/assets/images/bg-desktop-light.jpg');
+  --bg-image-mobile: url("/src/assets/images/bg-mobile-light.jpg");
+  --bg-image-desktop: url("/src/assets/images/bg-desktop-light.jpg");
 }
 
 body#dark {
@@ -99,13 +104,24 @@ body#dark {
   --text-search-input: var(--clr-whitish-gray);
   --text-list-item: var(--clr-whitish-gray);
   --text-search-input-placeholder: var(--clr-dark-gray-text);
-  // Hover
+  --bg-status-bar: var(--clr-midnight-black);
+  --drag-drop-text: var(--clr-dolphin-gray);
+  --items-left-text: var(--clr-dolphin-gray);
+  --clear-completed-text: var(--clr-dolphin-gray);
   --text-tabs: var(--clr-dolphin-gray);
-  --text-hover-tabs: var(---clr-blueish-white);
+  .create-bar {
+    box-shadow: none;
+  }
+  .todo-list {
+    box-shadow: none;
+  }
+  // Hover
+  --text-hover-tabs: var(--clr-white);
+  --clear-completed-text-hover: var(--clr-white);
 
   // Bg image
-  --bg-image-mobile: url('/src/assets/images/bg-mobile-dark.jpg');
-  --bg-image-desktop: url('/src/assets/images/bg-desktop-dark.jpg');
+  --bg-image-mobile: url("/src/assets/images/bg-mobile-dark.jpg");
+  --bg-image-desktop: url("/src/assets/images/bg-desktop-dark.jpg");
 }
 
 //TODO: DOESN'T WORK, FIX -- It overrides some of the dark-theme colours
